@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "DeleteLabList";
+}
+
+<h2>Delete Lab?</h2>
+<p>
+    <button id="deleteYes">Yes</button>
+    <form method="get" action="~/Home/ListOfLabs">
+        <button id="deleteNo">No</button>
+    </form>
+</p>
+@section scripts
+{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#deleteYes").click(function (event) {
+                DeleteLab();
+            });
+        });
+
+        // Удаление книги
+        function DeleteLab() {
+            var id = @ViewBag.Id
+            $.ajax({
+                url: '/api/ListLabs/' + id,
+                type: 'DELETE',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    window.location = 'https://localhost:44350/Home/ListOfLabs';
+                },
+                error: function (x, y, z) {
+                    alert('Error' + '\n' + 'Pleace checked the fields ' + '\n' + 'End try again');
+                }
+            });
+        }
+
+    </script>
+}
+

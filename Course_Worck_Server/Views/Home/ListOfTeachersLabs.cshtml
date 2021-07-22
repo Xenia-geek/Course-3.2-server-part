@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Course_Worck_Server.Models.ListLabTeacher>
+<div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#ef6565; border-bottom-color:white">
+    <div class="container">
+        <div class="navbar-collapse collapse" style=" background-color: #ef6565">
+            <ul class="nav navbar-nav">
+                <li style="font-size: 18px;font-family: MV Boli">@Html.ActionLink("List Of Students", "ListOfStudents", "Home", new { area = "" }, new { @class = "navbar-brand", @style = "color:white" })</li>
+                <li style=" font-size: 18px; font-family: MV Boli; margin-left: 5px">@Html.ActionLink("List Of Labs", "ListOfLabs", "Home", new { area = "" }, new { @class = "link", @style = "color:white" })</li>
+                <li style="font-size: 18px;font-family: MV Boli; margin-left:5px">@Html.ActionLink("List Of Teachers", "ListOfTeachers", "Home", new { area = "" }, new { @class = "link", @style = "color:white" })</li>
+                <li style="background-color: white;font-size: 18px;font-family: MV Boli; margin-left:5px">@Html.ActionLink("List Of Teacher's Lab", "ListOfTeachersLabs", "Home", new { area = "" }, new { @class = "link", @style = "color:red" })</li>
+                <li style="background-color:#F5F5F5; font-size: 18px;font-family: MV Boli; margin-left:345px">@Html.ActionLink("LogOff", "Logoff", "Home", new { area = "" }, new { @class = "link", @style = "color:red" })</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div style="margin-top: 10px;margin-bottom: 10px;" class="buttonsStudent">
+    <table>
+        <tr>
+            <td><form method="get" action="~/Home/AddTeachersLab"><input type="submit" value="Add Teacher's Lab" /></form></td>
+            <td><form method="get" action="~/Home/UpdateTeachersLab"><input type="submit" value="Update" /><input type="hidden" id="idSelectedItem" name="idSelectedItem" value="" /></form></td>
+            <td><form method="get" action="~/Home/DeleteTeachersLab"><input type="submit" value="Delete" /><input type="hidden" id="delSelectedItem" name="delSelectedItem" value="" /></form></td>
+        </tr>
+    </table>
+</div>
+<table>
+    <tr class="titels">
+        <th class="selectstudlist">Select</th>
+        <th class="namestudlist">Name Lab</th>
+        <th class="teacherlablist">Teacher</th>
+        <th class="grouplablist">Group</th>
+        <th class="weeklablist">Weekday</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr class="valuelist">
+            <td class="selectstudlist">
+                <input type="radio" name="a" id="@Html.DisplayFor(modelItem => item.IDListLabTeacher)" onchange="change()" />
+            </td>
+            <td class="idstudlist">
+                @Html.DisplayFor(modelItem => item.ListLab.NameLab)
+            </td>
+            <td class="namestudlist">
+                @Html.DisplayFor(modelItem => item.ListTeacher.Name)
+                @Html.DisplayFor(modelItem => item.ListTeacher.Surname)
+            </td>
+            <td class="surnamestudlist">
+                @Html.DisplayFor(modelItem => item.Group.Cource.NumberCource)  course
+                @Html.DisplayFor(modelItem => item.Group.NumberGroup) group
+                @Html.DisplayFor(modelItem => item.Group.SubGroup.IDSubGroup)  subgroup
+            </td>
+            <td class="specialitystudlist">
+                @Html.DisplayFor(modelItem => item.WeekName)
+            </td>
+        </tr>
+    }
+</table>
+<script>
+    function change() {
+        let elem = document.getElementsByName('a')
+        let update = document.getElementsByName('idSelectedItem')
+        let del = document.getElementsByName('delSelectedItem')
+        elem.forEach(item => {
+            if (item.checked) {
+                update[0].value = item.id
+                del[0].value = item.id
+            }
+        })
+    }
+</script>

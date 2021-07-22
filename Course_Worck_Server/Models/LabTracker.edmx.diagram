@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="70cf9cfe52e445599c658b616dc61fbd" Name="Diagram1" ZoomLevel="65">
+        <EntityTypeShape EntityType="LabTracker.Admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabTracker.Cource" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabTracker.Group" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabTracker.ListLab" Width="1.5" PointX="6" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabTracker.ListLabTeacher" Width="1.5" PointX="8.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabTracker.ListStudent" Width="1.5" PointX="5.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabTracker.ListTeacher" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabTracker.Semestr" Width="1.5" PointX="3.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabTracker.Speciality" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabTracker.Student" Width="1.5" PointX="7.5" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabTracker.SubGroup" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabTracker.Teacher" Width="1.5" PointX="8.25" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="LabTracker.Group_Cource_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="LabTracker.ListLab_Cource_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="LabTracker.Group_Speciality_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="LabTracker.Group_SubGroup_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="LabTracker.ListLabTeacher_Group_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="LabTracker.StudentList_Group_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="LabTracker.ListLab_Semestr_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="LabTracker.ListLab_Speciality_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="LabTracker.ListLabTeacher_ListLab_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="LabTracker.ListLabTeacher_ListTeachers_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="LabTracker.Student_StudentList_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="LabTracker.Teacher_ListTeachers_FK" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LabTracker.WeekDay" Width="1.5" PointX="3.375" PointY="0.875" />
+        <AssociationConnector Association="LabTracker.ListLabTeacher_WeekDay_FK" />
+        <EntityTypeShape EntityType="LabTracker.PlansPass" Width="1.5" PointX="11.25" PointY="8.5" />
+        <AssociationConnector Association="LabTracker.PlansPass_Group_FK" />
+        <AssociationConnector Association="LabTracker.PlansPass_ListLab_FK" />
+        <EntityTypeShape EntityType="LabTracker.StudentPass" Width="1.5" PointX="10.25" PointY="12.375" />
+        <AssociationConnector Association="LabTracker.StudentPass_ListLab_FK" />
+        <AssociationConnector Association="LabTracker.StudentPass_StudentList_FK" />
+        <AssociationConnector Association="LabTracker.StudentPass_ListTeachers_FK" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

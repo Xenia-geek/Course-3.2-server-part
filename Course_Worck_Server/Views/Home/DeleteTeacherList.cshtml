@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "DeleteTeacherList";
+}
+
+<h2>Delete Teacher?</h2>
+<p>
+    <button id="deleteYes">Yes</button>
+    <form method="get" action="~/Home/ListOfTeachers">
+        <button id="deleteNo">No</button>
+    </form>
+</p>
+@section scripts
+{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#deleteYes").click(function (event) {
+                DeleteTeacher();
+            });
+        });
+
+        // Удаление книги
+        function DeleteTeacher() {
+            var id = @ViewBag.Id
+            $.ajax({
+                url: '/api/ListTeachers/' + id,
+                type: 'DELETE',
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    window.location = 'https://localhost:44350/Home/ListOfTeachers';
+                },
+                error: function (x, y, z) {
+                    alert('Error' + '\n' + 'Pleace checked the fields ' + '\n' + 'End try again');
+                }
+            });
+        }
+
+    </script>
+}
+

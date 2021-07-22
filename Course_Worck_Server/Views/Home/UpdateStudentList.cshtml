@@ -1,0 +1,80 @@
+﻿@model Course_Worck_Server.Models.ListStudent
+@{
+    ViewBag.Title = "BSTU.Update Student";
+}
+<div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#ef6565; border-bottom-color:white">
+    <div class="container">
+        <div class="navbar-collapse collapse" style=" background-color: #ef6565">
+            <ul class="nav navbar-nav">
+                <li style="background-color: white; font-size: 18px; font-family: MV Boli">@Html.ActionLink("List Of Students", "ListOfStudents", "Home", new { area = "" }, new { @class = "navbar-brand", @style = "color:red" })</li>
+                <li style="font-size: 18px; font-family: MV Boli; margin-left: 5px">@Html.ActionLink("List Of Labs", "ListOfLabs", "Home", new { area = "" }, new { @class = "link", @style = "color:white" })</li>
+                <li style="font-size: 18px;font-family: MV Boli; margin-left:5px">@Html.ActionLink("List Of Teachers", "ListOfTeachers", "Home", new { area = "" }, new { @class = "link", @style = "color:white" })</li>
+                <li style="font-size: 18px;font-family: MV Boli; margin-left:5px">@Html.ActionLink("List Of Teacher's Lab", "ListOfTeachersLabs", "Home", new { area = "" }, new { @class = "link", @style = "color:white" })</li>
+                <li style="background-color:#F5F5F5; font-size: 18px;font-family: MV Boli; margin-left:345px">@Html.ActionLink("LogOff", "Logoff", "Home", new { area = "" }, new { @class = "link", @style = "color:red" })</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="addpage">
+    <h2>Update Student</h2>
+    <div id="createBlock">
+
+
+        <table>
+            <tr>
+                <td><label>ID: </label></td>
+                <td><input type="number" id="updateID" value="@Html.DisplayFor(model => model.IDStudent)" /></td>
+            </tr>
+            <tr>
+                <td><label>Name: </label> </td>
+                <td><input type="text" id="updateName" value="@Html.DisplayFor(model => model.Name)" /></td>
+                
+            </tr>
+            <tr>
+                <td><label>Surname: </label></td>
+                <td><input type="text" id="updateSurname" value="@Html.DisplayFor(model => model.Surname)" /></td>              
+            </tr>
+            <tr>
+                <td><label>Group: </label></td>
+                <td>@Html.DropDownListFor(model => model.IDGroup, ViewBag.Group as SelectList, "select group", new { id = "updateGroup" })</td>
+            </tr>
+        </table>
+        
+        <button id="updateStudent">Save</button>
+    </div>
+
+</div>
+@section scripts
+{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#updateStudent").click(function (event) {
+                UpdateStudent();
+            });
+        });
+        // Добавление новой книги
+        function UpdateStudent() {
+            var id = $('#updateID').val();
+            // получаем значения для добавляемой книги
+            var student = {
+                IDStudent: $('#updateID').val(),
+                Name: $('#updateName').val(),
+                Surname: $('#updateSurname').val(),
+                IDGroup: $('#updateGroup').val()
+            };
+            $.ajax({
+                url: '/api/ListStudents/' + id,
+                type: 'PUT',
+                data: JSON.stringify(student),
+                contentType: "application/json;charset=utf-8",
+                success: function () {
+                    window.location = 'https://localhost:44350/Home/ListOfStudents';
+                },
+                error: function (x, y, z) {
+                    alert('Error' + '\n' + 'Pleace checked the fields ' + '\n' + 'End try again');
+                }
+            });
+        }
+    </script>
+}

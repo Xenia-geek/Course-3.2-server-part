@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "DeleteStudentList";
+}
+<h2>Delete Student?</h2>
+<p>
+    <button id="deleteYes">Yes</button>
+    <form method="get" action="~/Home/ListOfStudents">
+        <button id="deleteNo">No</button>
+    </form>
+</p>
+@section scripts
+{
+    
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#deleteYes").click(function (event) {
+                DeleteStudents();
+            });
+        });
+
+        function DeleteStudents() {
+            var id = @ViewBag.Id
+            $.ajax({
+                url: '/api/ListStudents/' + id,
+                type: 'DELETE',
+                contentType: "application/json;charset=utf-8",
+                success: function () {
+                    window.location = 'https://localhost:44350/Home/ListOfStudents'
+                },
+                error: function () {
+                    alert('Error' + '\n' + 'Pleace checked the fields ' + '\n' + 'End try again');
+                }
+            });
+        }
+
+
+    </script>
+}
+
+

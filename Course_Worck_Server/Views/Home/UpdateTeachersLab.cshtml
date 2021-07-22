@@ -1,0 +1,81 @@
+﻿@model Course_Worck_Server.Models.ListLabTeacher
+@{
+    ViewBag.Title = "BSTU.Update Teacher's Lab";
+}
+<div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#ef6565; border-bottom-color:white">
+    <div class="container">
+        <div class="navbar-collapse collapse" style=" background-color: #ef6565">
+            <ul class="nav navbar-nav">
+                <li style="font-size: 18px;font-family: MV Boli">@Html.ActionLink("List Of Students", "ListOfStudents", "Home", new { area = "" }, new { @class = "navbar-brand", @style = "color:white" })</li>
+                <li style=" font-size: 18px; font-family: MV Boli; margin-left: 5px">@Html.ActionLink("List Of Labs", "ListOfLabs", "Home", new { area = "" }, new { @class = "link", @style = "color:white" })</li>
+                <li style="font-size: 18px;font-family: MV Boli; margin-left:5px">@Html.ActionLink("List Of Teachers", "ListOfTeachers", "Home", new { area = "" }, new { @class = "link", @style = "color:white" })</li>
+                <li style="background-color: white;font-size: 18px;font-family: MV Boli; margin-left:5px">@Html.ActionLink("List Of Teacher's Lab", "ListOfTeachersLabs", "Home", new { area = "" }, new { @class = "link", @style = "color:red" })</li>
+                <li style="background-color:#F5F5F5; font-size: 18px;font-family: MV Boli; margin-left:345px">@Html.ActionLink("LogOff", "Logoff", "Home", new { area = "" }, new { @class = "link", @style = "color:red" })</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="addpage">
+    <h2>Update Student</h2>
+    <div id="createBlock">
+
+
+        <table>
+            <tr>
+                <td><label>Teacher: </label></td>
+                <td>@Html.DropDownListFor(model => model.IDTeacher, ViewBag.Teacher as SelectList, "select group", new { id = "updateTeacher" })</td>
+            </tr>
+            <tr>
+                <td><label>Lab: </label> </td>
+                <td>@Html.DropDownListFor(model => model.IDLab, ViewBag.Lab as SelectList, "select group", new { id = "updateLab" })</td>
+
+            </tr>
+            <tr>
+                <td><label>Group: </label></td>
+                <td>@Html.DropDownListFor(model => model.IDGroup, ViewBag.Group as SelectList, "select group", new { id = "updateGroup" })</td>
+            </tr>
+            <tr>
+                <td><label>Weekday: </label></td>
+                <td>@Html.DropDownListFor(model => model.WeekName, ViewBag.Week as SelectList, "select group", new { id = "updateWeek" })</td>
+            </tr>
+        </table>
+
+        <button id="updateStudent">Update</button>
+    </div>
+
+</div>
+@section scripts
+{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#updateStudent").click(function (event) {
+                UpdateStudent();
+            });
+        });
+        // Добавление новой книги
+        function UpdateStudent() {
+            var id = @ViewBag.Id;
+            // получаем значения для добавляемой книги
+            var student = {
+                IDListLabTeacher: id,
+                IDTeacher: $('#updateTeacher').val(),
+                IDGroup: $('#updateGroup').val(),
+                IDLab: $('#updateLab').val(),
+                WeekName: $('#updateWeek').val()
+            };
+            $.ajax({
+                url: '/api/ListLabTeachers/' + id,
+                type: 'PUT',
+                data: JSON.stringify(student),
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    window.location = 'https://localhost:44350/Home/ListOfTeachersLabs';
+                },
+                error: function (x, y, z) {
+                    alert('Error' + '\n' + 'Pleace checked the fields ' + '\n' + 'End try again');
+                }
+            });
+        }
+    </script>
+}

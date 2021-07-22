@@ -1,0 +1,1086 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище LabTracker" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Login" />
+          </Key>
+          <Property Name="Login" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Password" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cource">
+          <Key>
+            <PropertyRef Name="IDCource" />
+          </Key>
+          <Property Name="IDCource" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumberCource" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="IDGroup" />
+          </Key>
+          <Property Name="IDGroup" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumberGroup" Type="int" Nullable="false" />
+          <Property Name="IDSpeciality" Type="nvarchar" MaxLength="100" />
+          <Property Name="IDSubGroup" Type="int" />
+          <Property Name="IDCource" Type="int" />
+        </EntityType>
+        <EntityType Name="ListLab">
+          <Key>
+            <PropertyRef Name="IDLab" />
+          </Key>
+          <Property Name="IDLab" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameLab" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="IDCource" Type="int" />
+          <Property Name="IDSpeciality" Type="nvarchar" MaxLength="100" />
+          <Property Name="IDSem" Type="int" />
+        </EntityType>
+        <EntityType Name="ListLabTeacher">
+          <Key>
+            <PropertyRef Name="IDListLabTeacher" />
+          </Key>
+          <Property Name="IDListLabTeacher" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDTeacher" Type="int" />
+          <Property Name="IDGroup" Type="int" />
+          <Property Name="IDLab" Type="int" />
+          <Property Name="WeekName" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ListStudents">
+          <Key>
+            <PropertyRef Name="IDStudent" />
+          </Key>
+          <Property Name="IDStudent" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IDGroup" Type="int" />
+        </EntityType>
+        <EntityType Name="ListTeachers">
+          <Key>
+            <PropertyRef Name="IDTeacher" />
+          </Key>
+          <Property Name="IDTeacher" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PlansPass">
+          <Key>
+            <PropertyRef Name="IDPlan" />
+          </Key>
+          <Property Name="IDPlan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDGroup" Type="int" />
+          <Property Name="IDLab" Type="int" />
+          <Property Name="Date" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Semestr">
+          <Key>
+            <PropertyRef Name="IDSem" />
+          </Key>
+          <Property Name="IDSem" Type="int" Nullable="false" />
+          <Property Name="MonthDayStart" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="MonthDayEnd" Type="nvarchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Speciality">
+          <Key>
+            <PropertyRef Name="NameSpeciality" />
+          </Key>
+          <Property Name="NameSpeciality" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Login" />
+          </Key>
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="int" Nullable="false" />
+          <Property Name="IDStudent" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="AboutMe" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="StudentPass">
+          <Key>
+            <PropertyRef Name="IDStudentPass" />
+          </Key>
+          <Property Name="IDStudentPass" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDStudent" Type="int" />
+          <Property Name="IDTeacher" Type="int" />
+          <Property Name="IDLab" Type="int" />
+          <Property Name="PassedQuantity" Type="int" />
+        </EntityType>
+        <EntityType Name="SubGroup">
+          <Key>
+            <PropertyRef Name="IDSubGroup" />
+          </Key>
+          <Property Name="IDSubGroup" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="Login" />
+          </Key>
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="int" Nullable="false" />
+          <Property Name="IDTeacher" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="AboutMe" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="WeekDay">
+          <Key>
+            <PropertyRef Name="IDWeek" />
+          </Key>
+          <Property Name="IDWeek" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="Group_Cource_FK">
+          <End Role="Cource" Type="Self.Cource" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cource">
+              <PropertyRef Name="IDCource" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="IDCource" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Group_Speciality_FK">
+          <End Role="Speciality" Type="Self.Speciality" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="NameSpeciality" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="IDSpeciality" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Group_SubGroup_FK">
+          <End Role="SubGroup" Type="Self.SubGroup" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubGroup">
+              <PropertyRef Name="IDSubGroup" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="IDSubGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ListLab_Cource_FK">
+          <End Role="Cource" Type="Self.Cource" Multiplicity="0..1" />
+          <End Role="ListLab" Type="Self.ListLab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cource">
+              <PropertyRef Name="IDCource" />
+            </Principal>
+            <Dependent Role="ListLab">
+              <PropertyRef Name="IDCource" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ListLab_Semestr_FK">
+          <End Role="Semestr" Type="Self.Semestr" Multiplicity="0..1" />
+          <End Role="ListLab" Type="Self.ListLab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semestr">
+              <PropertyRef Name="IDSem" />
+            </Principal>
+            <Dependent Role="ListLab">
+              <PropertyRef Name="IDSem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ListLab_Speciality_FK">
+          <End Role="Speciality" Type="Self.Speciality" Multiplicity="0..1" />
+          <End Role="ListLab" Type="Self.ListLab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="NameSpeciality" />
+            </Principal>
+            <Dependent Role="ListLab">
+              <PropertyRef Name="IDSpeciality" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ListLabTeacher_Group_FK">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+          <End Role="ListLabTeacher" Type="Self.ListLabTeacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="IDGroup" />
+            </Principal>
+            <Dependent Role="ListLabTeacher">
+              <PropertyRef Name="IDGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ListLabTeacher_ListLab_FK">
+          <End Role="ListLab" Type="Self.ListLab" Multiplicity="0..1" />
+          <End Role="ListLabTeacher" Type="Self.ListLabTeacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListLab">
+              <PropertyRef Name="IDLab" />
+            </Principal>
+            <Dependent Role="ListLabTeacher">
+              <PropertyRef Name="IDLab" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ListLabTeacher_ListTeachers_FK">
+          <End Role="ListTeachers" Type="Self.ListTeachers" Multiplicity="0..1" />
+          <End Role="ListLabTeacher" Type="Self.ListLabTeacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListTeachers">
+              <PropertyRef Name="IDTeacher" />
+            </Principal>
+            <Dependent Role="ListLabTeacher">
+              <PropertyRef Name="IDTeacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ListLabTeacher_WeekDay_FK">
+          <End Role="WeekDay" Type="Self.WeekDay" Multiplicity="0..1" />
+          <End Role="ListLabTeacher" Type="Self.ListLabTeacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WeekDay">
+              <PropertyRef Name="IDWeek" />
+            </Principal>
+            <Dependent Role="ListLabTeacher">
+              <PropertyRef Name="WeekName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PlansPass_Group_FK">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+          <End Role="PlansPass" Type="Self.PlansPass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="IDGroup" />
+            </Principal>
+            <Dependent Role="PlansPass">
+              <PropertyRef Name="IDGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PlansPass_ListLab_FK">
+          <End Role="ListLab" Type="Self.ListLab" Multiplicity="0..1" />
+          <End Role="PlansPass" Type="Self.PlansPass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListLab">
+              <PropertyRef Name="IDLab" />
+            </Principal>
+            <Dependent Role="PlansPass">
+              <PropertyRef Name="IDLab" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Student_StudentList_FK">
+          <End Role="ListStudents" Type="Self.ListStudents" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListStudents">
+              <PropertyRef Name="IDStudent" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="IDStudent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StudentList_Group_FK">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+          <End Role="ListStudents" Type="Self.ListStudents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="IDGroup" />
+            </Principal>
+            <Dependent Role="ListStudents">
+              <PropertyRef Name="IDGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StudentPass_ListLab_FK">
+          <End Role="ListLab" Type="Self.ListLab" Multiplicity="0..1" />
+          <End Role="StudentPass" Type="Self.StudentPass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListLab">
+              <PropertyRef Name="IDLab" />
+            </Principal>
+            <Dependent Role="StudentPass">
+              <PropertyRef Name="IDLab" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StudentPass_ListTeachers_FK">
+          <End Role="ListTeachers" Type="Self.ListTeachers" Multiplicity="0..1" />
+          <End Role="StudentPass" Type="Self.StudentPass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListTeachers">
+              <PropertyRef Name="IDTeacher" />
+            </Principal>
+            <Dependent Role="StudentPass">
+              <PropertyRef Name="IDTeacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StudentPass_StudentList_FK">
+          <End Role="ListStudents" Type="Self.ListStudents" Multiplicity="0..1" />
+          <End Role="StudentPass" Type="Self.StudentPass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListStudents">
+              <PropertyRef Name="IDStudent" />
+            </Principal>
+            <Dependent Role="StudentPass">
+              <PropertyRef Name="IDStudent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Teacher_ListTeachers_FK">
+          <End Role="ListTeachers" Type="Self.ListTeachers" Multiplicity="0..1" />
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListTeachers">
+              <PropertyRef Name="IDTeacher" />
+            </Principal>
+            <Dependent Role="Teacher">
+              <PropertyRef Name="IDTeacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище LabTrackerContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cource" EntityType="Self.Cource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ListLab" EntityType="Self.ListLab" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ListLabTeacher" EntityType="Self.ListLabTeacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ListStudents" EntityType="Self.ListStudents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ListTeachers" EntityType="Self.ListTeachers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlansPass" EntityType="Self.PlansPass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Semestr" EntityType="Self.Semestr" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Speciality" EntityType="Self.Speciality" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentPass" EntityType="Self.StudentPass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubGroup" EntityType="Self.SubGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WeekDay" EntityType="Self.WeekDay" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Group_Cource_FK" Association="Self.Group_Cource_FK">
+            <End Role="Cource" EntitySet="Cource" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="Group_Speciality_FK" Association="Self.Group_Speciality_FK">
+            <End Role="Speciality" EntitySet="Speciality" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="Group_SubGroup_FK" Association="Self.Group_SubGroup_FK">
+            <End Role="SubGroup" EntitySet="SubGroup" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="ListLab_Cource_FK" Association="Self.ListLab_Cource_FK">
+            <End Role="Cource" EntitySet="Cource" />
+            <End Role="ListLab" EntitySet="ListLab" />
+          </AssociationSet>
+          <AssociationSet Name="ListLab_Semestr_FK" Association="Self.ListLab_Semestr_FK">
+            <End Role="Semestr" EntitySet="Semestr" />
+            <End Role="ListLab" EntitySet="ListLab" />
+          </AssociationSet>
+          <AssociationSet Name="ListLab_Speciality_FK" Association="Self.ListLab_Speciality_FK">
+            <End Role="Speciality" EntitySet="Speciality" />
+            <End Role="ListLab" EntitySet="ListLab" />
+          </AssociationSet>
+          <AssociationSet Name="ListLabTeacher_Group_FK" Association="Self.ListLabTeacher_Group_FK">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="ListLabTeacher" EntitySet="ListLabTeacher" />
+          </AssociationSet>
+          <AssociationSet Name="ListLabTeacher_ListLab_FK" Association="Self.ListLabTeacher_ListLab_FK">
+            <End Role="ListLab" EntitySet="ListLab" />
+            <End Role="ListLabTeacher" EntitySet="ListLabTeacher" />
+          </AssociationSet>
+          <AssociationSet Name="ListLabTeacher_ListTeachers_FK" Association="Self.ListLabTeacher_ListTeachers_FK">
+            <End Role="ListTeachers" EntitySet="ListTeachers" />
+            <End Role="ListLabTeacher" EntitySet="ListLabTeacher" />
+          </AssociationSet>
+          <AssociationSet Name="ListLabTeacher_WeekDay_FK" Association="Self.ListLabTeacher_WeekDay_FK">
+            <End Role="WeekDay" EntitySet="WeekDay" />
+            <End Role="ListLabTeacher" EntitySet="ListLabTeacher" />
+          </AssociationSet>
+          <AssociationSet Name="PlansPass_Group_FK" Association="Self.PlansPass_Group_FK">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="PlansPass" EntitySet="PlansPass" />
+          </AssociationSet>
+          <AssociationSet Name="PlansPass_ListLab_FK" Association="Self.PlansPass_ListLab_FK">
+            <End Role="ListLab" EntitySet="ListLab" />
+            <End Role="PlansPass" EntitySet="PlansPass" />
+          </AssociationSet>
+          <AssociationSet Name="Student_StudentList_FK" Association="Self.Student_StudentList_FK">
+            <End Role="ListStudents" EntitySet="ListStudents" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="StudentList_Group_FK" Association="Self.StudentList_Group_FK">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="ListStudents" EntitySet="ListStudents" />
+          </AssociationSet>
+          <AssociationSet Name="StudentPass_ListLab_FK" Association="Self.StudentPass_ListLab_FK">
+            <End Role="ListLab" EntitySet="ListLab" />
+            <End Role="StudentPass" EntitySet="StudentPass" />
+          </AssociationSet>
+          <AssociationSet Name="StudentPass_ListTeachers_FK" Association="Self.StudentPass_ListTeachers_FK">
+            <End Role="ListTeachers" EntitySet="ListTeachers" />
+            <End Role="StudentPass" EntitySet="StudentPass" />
+          </AssociationSet>
+          <AssociationSet Name="StudentPass_StudentList_FK" Association="Self.StudentPass_StudentList_FK">
+            <End Role="ListStudents" EntitySet="ListStudents" />
+            <End Role="StudentPass" EntitySet="StudentPass" />
+          </AssociationSet>
+          <AssociationSet Name="Teacher_ListTeachers_FK" Association="Self.Teacher_ListTeachers_FK">
+            <End Role="ListTeachers" EntitySet="ListTeachers" />
+            <End Role="Teacher" EntitySet="Teacher" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LabTracker" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Login" />
+          </Key>
+          <Property Name="Login" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cource">
+          <Key>
+            <PropertyRef Name="IDCource" />
+          </Key>
+          <Property Name="IDCource" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumberCource" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Groups" Relationship="Self.Group_Cource_FK" FromRole="Cource" ToRole="Groups" />
+          <NavigationProperty Name="ListLabs" Relationship="Self.ListLab_Cource_FK" FromRole="Cource" ToRole="ListLab" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="IDGroup" />
+          </Key>
+          <Property Name="IDGroup" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumberGroup" Type="Int32" Nullable="false" />
+          <Property Name="IDSpeciality" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IDSubGroup" Type="Int32" />
+          <Property Name="IDCource" Type="Int32" />
+          <NavigationProperty Name="Cource" Relationship="Self.Group_Cource_FK" FromRole="Groups" ToRole="Cource" />
+          <NavigationProperty Name="Speciality" Relationship="Self.Group_Speciality_FK" FromRole="Groups" ToRole="Speciality" />
+          <NavigationProperty Name="SubGroup" Relationship="Self.Group_SubGroup_FK" FromRole="Groups" ToRole="SubGroup" />
+          <NavigationProperty Name="ListLabTeachers" Relationship="Self.ListLabTeacher_Group_FK" FromRole="Groups" ToRole="ListLabTeacher" />
+          <NavigationProperty Name="ListStudents" Relationship="Self.StudentList_Group_FK" FromRole="Groups" ToRole="ListStudents" />
+          <NavigationProperty Name="PlansPasses" Relationship="LabTracker.PlansPass_Group_FK" FromRole="Group" ToRole="PlansPass" />
+        </EntityType>
+        <EntityType Name="ListLab">
+          <Key>
+            <PropertyRef Name="IDLab" />
+          </Key>
+          <Property Name="IDLab" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameLab" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="IDCource" Type="Int32" />
+          <Property Name="IDSpeciality" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IDSem" Type="Int32" />
+          <NavigationProperty Name="Cource" Relationship="Self.ListLab_Cource_FK" FromRole="ListLab" ToRole="Cource" />
+          <NavigationProperty Name="Semestr" Relationship="Self.ListLab_Semestr_FK" FromRole="ListLab" ToRole="Semestr" />
+          <NavigationProperty Name="Speciality" Relationship="Self.ListLab_Speciality_FK" FromRole="ListLab" ToRole="Speciality" />
+          <NavigationProperty Name="ListLabTeachers" Relationship="Self.ListLabTeacher_ListLab_FK" FromRole="ListLab" ToRole="ListLabTeacher" />
+          <NavigationProperty Name="PlansPasses" Relationship="LabTracker.PlansPass_ListLab_FK" FromRole="ListLab" ToRole="PlansPass" />
+          <NavigationProperty Name="StudentPasses" Relationship="LabTracker.StudentPass_ListLab_FK" FromRole="ListLab" ToRole="StudentPass" />
+        </EntityType>
+        <EntityType Name="ListLabTeacher">
+          <Key>
+            <PropertyRef Name="IDListLabTeacher" />
+          </Key>
+          <Property Name="IDListLabTeacher" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDTeacher" Type="Int32" />
+          <Property Name="IDGroup" Type="Int32" />
+          <Property Name="IDLab" Type="Int32" />
+          <Property Name="WeekName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Group" Relationship="Self.ListLabTeacher_Group_FK" FromRole="ListLabTeacher" ToRole="Groups" />
+          <NavigationProperty Name="ListLab" Relationship="Self.ListLabTeacher_ListLab_FK" FromRole="ListLabTeacher" ToRole="ListLab" />
+          <NavigationProperty Name="ListTeacher" Relationship="Self.ListLabTeacher_ListTeachers_FK" FromRole="ListLabTeacher" ToRole="ListTeachers" />
+          <NavigationProperty Name="WeekDay" Relationship="LabTracker.ListLabTeacher_WeekDay_FK" FromRole="ListLabTeacher" ToRole="WeekDay" />
+        </EntityType>
+        <EntityType Name="ListStudent">
+          <Key>
+            <PropertyRef Name="IDStudent" />
+          </Key>
+          <Property Name="IDStudent" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IDGroup" Type="Int32" />
+          <NavigationProperty Name="Group" Relationship="Self.StudentList_Group_FK" FromRole="ListStudents" ToRole="Groups" />
+          <NavigationProperty Name="Students" Relationship="Self.Student_StudentList_FK" FromRole="ListStudents" ToRole="Student" />
+          <NavigationProperty Name="StudentPasses" Relationship="LabTracker.StudentPass_StudentList_FK" FromRole="ListStudent" ToRole="StudentPass" />
+        </EntityType>
+        <EntityType Name="ListTeacher">
+          <Key>
+            <PropertyRef Name="IDTeacher" />
+          </Key>
+          <Property Name="IDTeacher" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ListLabTeachers" Relationship="Self.ListLabTeacher_ListTeachers_FK" FromRole="ListTeachers" ToRole="ListLabTeacher" />
+          <NavigationProperty Name="Teachers" Relationship="Self.Teacher_ListTeachers_FK" FromRole="ListTeachers" ToRole="Teacher" />
+          <NavigationProperty Name="StudentPasses" Relationship="LabTracker.StudentPass_ListTeachers_FK" FromRole="ListTeacher" ToRole="StudentPass" />
+        </EntityType>
+        <EntityType Name="Semestr">
+          <Key>
+            <PropertyRef Name="IDSem" />
+          </Key>
+          <Property Name="IDSem" Type="Int32" Nullable="false" />
+          <Property Name="MonthDayStart" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MonthDayEnd" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ListLabs" Relationship="Self.ListLab_Semestr_FK" FromRole="Semestr" ToRole="ListLab" />
+        </EntityType>
+        <EntityType Name="Speciality">
+          <Key>
+            <PropertyRef Name="NameSpeciality" />
+          </Key>
+          <Property Name="NameSpeciality" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Groups" Relationship="Self.Group_Speciality_FK" FromRole="Speciality" ToRole="Groups" />
+          <NavigationProperty Name="ListLabs" Relationship="Self.ListLab_Speciality_FK" FromRole="Speciality" ToRole="ListLab" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Login" />
+          </Key>
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="Int32" Nullable="false" />
+          <Property Name="IDStudent" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AboutMe" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ListStudent" Relationship="Self.Student_StudentList_FK" FromRole="Student" ToRole="ListStudents" />
+        </EntityType>
+        <EntityType Name="SubGroup">
+          <Key>
+            <PropertyRef Name="IDSubGroup" />
+          </Key>
+          <Property Name="IDSubGroup" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Groups" Relationship="Self.Group_SubGroup_FK" FromRole="SubGroup" ToRole="Groups" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="Login" />
+          </Key>
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="Int32" Nullable="false" />
+          <Property Name="IDTeacher" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AboutMe" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ListTeacher" Relationship="Self.Teacher_ListTeachers_FK" FromRole="Teacher" ToRole="ListTeachers" />
+        </EntityType>
+        <Association Name="Group_Cource_FK">
+          <End Role="Cource" Type="Self.Cource" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cource">
+              <PropertyRef Name="IDCource" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="IDCource" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ListLab_Cource_FK">
+          <End Role="Cource" Type="Self.Cource" Multiplicity="0..1" />
+          <End Role="ListLab" Type="Self.ListLab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cource">
+              <PropertyRef Name="IDCource" />
+            </Principal>
+            <Dependent Role="ListLab">
+              <PropertyRef Name="IDCource" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Group_Speciality_FK">
+          <End Role="Speciality" Type="Self.Speciality" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="NameSpeciality" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="IDSpeciality" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Group_SubGroup_FK">
+          <End Role="SubGroup" Type="Self.SubGroup" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubGroup">
+              <PropertyRef Name="IDSubGroup" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="IDSubGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ListLabTeacher_Group_FK">
+          <End Role="Groups" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="ListLabTeacher" Type="Self.ListLabTeacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="IDGroup" />
+            </Principal>
+            <Dependent Role="ListLabTeacher">
+              <PropertyRef Name="IDGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StudentList_Group_FK">
+          <End Role="Groups" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="ListStudents" Type="Self.ListStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="IDGroup" />
+            </Principal>
+            <Dependent Role="ListStudents">
+              <PropertyRef Name="IDGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ListLab_Semestr_FK">
+          <End Role="Semestr" Type="Self.Semestr" Multiplicity="0..1" />
+          <End Role="ListLab" Type="Self.ListLab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semestr">
+              <PropertyRef Name="IDSem" />
+            </Principal>
+            <Dependent Role="ListLab">
+              <PropertyRef Name="IDSem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ListLab_Speciality_FK">
+          <End Role="Speciality" Type="Self.Speciality" Multiplicity="0..1" />
+          <End Role="ListLab" Type="Self.ListLab" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="NameSpeciality" />
+            </Principal>
+            <Dependent Role="ListLab">
+              <PropertyRef Name="IDSpeciality" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ListLabTeacher_ListLab_FK">
+          <End Role="ListLab" Type="Self.ListLab" Multiplicity="0..1" />
+          <End Role="ListLabTeacher" Type="Self.ListLabTeacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListLab">
+              <PropertyRef Name="IDLab" />
+            </Principal>
+            <Dependent Role="ListLabTeacher">
+              <PropertyRef Name="IDLab" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ListLabTeacher_ListTeachers_FK">
+          <End Role="ListTeachers" Type="Self.ListTeacher" Multiplicity="0..1" />
+          <End Role="ListLabTeacher" Type="Self.ListLabTeacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListTeachers">
+              <PropertyRef Name="IDTeacher" />
+            </Principal>
+            <Dependent Role="ListLabTeacher">
+              <PropertyRef Name="IDTeacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Student_StudentList_FK">
+          <End Role="ListStudents" Type="Self.ListStudent" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListStudents">
+              <PropertyRef Name="IDStudent" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="IDStudent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Teacher_ListTeachers_FK">
+          <End Role="ListTeachers" Type="Self.ListTeacher" Multiplicity="0..1" />
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListTeachers">
+              <PropertyRef Name="IDTeacher" />
+            </Principal>
+            <Dependent Role="Teacher">
+              <PropertyRef Name="IDTeacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LabTrackerDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Cources" EntityType="Self.Cource" />
+          <EntitySet Name="Groups" EntityType="Self.Group" />
+          <EntitySet Name="ListLabs" EntityType="Self.ListLab" />
+          <EntitySet Name="ListLabTeachers" EntityType="Self.ListLabTeacher" />
+          <EntitySet Name="ListStudents" EntityType="Self.ListStudent" />
+          <EntitySet Name="ListTeachers" EntityType="Self.ListTeacher" />
+          <EntitySet Name="Semestrs" EntityType="Self.Semestr" />
+          <EntitySet Name="Specialities" EntityType="Self.Speciality" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="SubGroups" EntityType="Self.SubGroup" />
+          <EntitySet Name="Teachers" EntityType="Self.Teacher" />
+          <AssociationSet Name="Group_Cource_FK" Association="Self.Group_Cource_FK">
+            <End Role="Cource" EntitySet="Cources" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="ListLab_Cource_FK" Association="Self.ListLab_Cource_FK">
+            <End Role="Cource" EntitySet="Cources" />
+            <End Role="ListLab" EntitySet="ListLabs" />
+          </AssociationSet>
+          <AssociationSet Name="Group_Speciality_FK" Association="Self.Group_Speciality_FK">
+            <End Role="Speciality" EntitySet="Specialities" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="Group_SubGroup_FK" Association="Self.Group_SubGroup_FK">
+            <End Role="SubGroup" EntitySet="SubGroups" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="ListLabTeacher_Group_FK" Association="Self.ListLabTeacher_Group_FK">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="ListLabTeacher" EntitySet="ListLabTeachers" />
+          </AssociationSet>
+          <AssociationSet Name="StudentList_Group_FK" Association="Self.StudentList_Group_FK">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="ListStudents" EntitySet="ListStudents" />
+          </AssociationSet>
+          <AssociationSet Name="ListLab_Semestr_FK" Association="Self.ListLab_Semestr_FK">
+            <End Role="Semestr" EntitySet="Semestrs" />
+            <End Role="ListLab" EntitySet="ListLabs" />
+          </AssociationSet>
+          <AssociationSet Name="ListLab_Speciality_FK" Association="Self.ListLab_Speciality_FK">
+            <End Role="Speciality" EntitySet="Specialities" />
+            <End Role="ListLab" EntitySet="ListLabs" />
+          </AssociationSet>
+          <AssociationSet Name="ListLabTeacher_ListLab_FK" Association="Self.ListLabTeacher_ListLab_FK">
+            <End Role="ListLab" EntitySet="ListLabs" />
+            <End Role="ListLabTeacher" EntitySet="ListLabTeachers" />
+          </AssociationSet>
+          <AssociationSet Name="ListLabTeacher_ListTeachers_FK" Association="Self.ListLabTeacher_ListTeachers_FK">
+            <End Role="ListTeachers" EntitySet="ListTeachers" />
+            <End Role="ListLabTeacher" EntitySet="ListLabTeachers" />
+          </AssociationSet>
+          <AssociationSet Name="Student_StudentList_FK" Association="Self.Student_StudentList_FK">
+            <End Role="ListStudents" EntitySet="ListStudents" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="Teacher_ListTeachers_FK" Association="Self.Teacher_ListTeachers_FK">
+            <End Role="ListTeachers" EntitySet="ListTeachers" />
+            <End Role="Teacher" EntitySet="Teachers" />
+          </AssociationSet>
+          <EntitySet Name="WeekDays" EntityType="LabTracker.WeekDay" />
+          <AssociationSet Name="ListLabTeacher_WeekDay_FK" Association="LabTracker.ListLabTeacher_WeekDay_FK">
+            <End Role="WeekDay" EntitySet="WeekDays" />
+            <End Role="ListLabTeacher" EntitySet="ListLabTeachers" />
+          </AssociationSet>
+          <EntitySet Name="PlansPasses" EntityType="LabTracker.PlansPass" />
+          <AssociationSet Name="PlansPass_Group_FK" Association="LabTracker.PlansPass_Group_FK">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="PlansPass" EntitySet="PlansPasses" />
+          </AssociationSet>
+          <AssociationSet Name="PlansPass_ListLab_FK" Association="LabTracker.PlansPass_ListLab_FK">
+            <End Role="ListLab" EntitySet="ListLabs" />
+            <End Role="PlansPass" EntitySet="PlansPasses" />
+          </AssociationSet>
+          <EntitySet Name="StudentPasses" EntityType="LabTracker.StudentPass" />
+          <AssociationSet Name="StudentPass_ListLab_FK" Association="LabTracker.StudentPass_ListLab_FK">
+            <End Role="ListLab" EntitySet="ListLabs" />
+            <End Role="StudentPass" EntitySet="StudentPasses" />
+          </AssociationSet>
+          <AssociationSet Name="StudentPass_StudentList_FK" Association="LabTracker.StudentPass_StudentList_FK">
+            <End Role="ListStudent" EntitySet="ListStudents" />
+            <End Role="StudentPass" EntitySet="StudentPasses" />
+          </AssociationSet>
+          <AssociationSet Name="StudentPass_ListTeachers_FK" Association="LabTracker.StudentPass_ListTeachers_FK">
+            <End Role="ListTeacher" EntitySet="ListTeachers" />
+            <End Role="StudentPass" EntitySet="StudentPasses" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="WeekDay">
+          <Key>
+            <PropertyRef Name="IDWeek" />
+          </Key>
+          <Property Name="IDWeek" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ListLabTeachers" Relationship="LabTracker.ListLabTeacher_WeekDay_FK" FromRole="WeekDay" ToRole="ListLabTeacher" />
+        </EntityType>
+        <Association Name="ListLabTeacher_WeekDay_FK">
+          <End Type="LabTracker.WeekDay" Role="WeekDay" Multiplicity="0..1" />
+          <End Type="LabTracker.ListLabTeacher" Role="ListLabTeacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WeekDay">
+              <PropertyRef Name="IDWeek" />
+            </Principal>
+            <Dependent Role="ListLabTeacher">
+              <PropertyRef Name="WeekName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PlansPass">
+          <Key>
+            <PropertyRef Name="IDPlan" />
+          </Key>
+          <Property Name="IDPlan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDGroup" Type="Int32" />
+          <Property Name="IDLab" Type="Int32" />
+          <Property Name="Date" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Group" Relationship="LabTracker.PlansPass_Group_FK" FromRole="PlansPass" ToRole="Group" />
+          <NavigationProperty Name="ListLab" Relationship="LabTracker.PlansPass_ListLab_FK" FromRole="PlansPass" ToRole="ListLab" />
+        </EntityType>
+        <Association Name="PlansPass_Group_FK">
+          <End Type="LabTracker.Group" Role="Group" Multiplicity="0..1" />
+          <End Type="LabTracker.PlansPass" Role="PlansPass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="IDGroup" />
+            </Principal>
+            <Dependent Role="PlansPass">
+              <PropertyRef Name="IDGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PlansPass_ListLab_FK">
+          <End Type="LabTracker.ListLab" Role="ListLab" Multiplicity="0..1" />
+          <End Type="LabTracker.PlansPass" Role="PlansPass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListLab">
+              <PropertyRef Name="IDLab" />
+            </Principal>
+            <Dependent Role="PlansPass">
+              <PropertyRef Name="IDLab" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="StudentPass">
+          <Key>
+            <PropertyRef Name="IDStudentPass" />
+          </Key>
+          <Property Name="IDStudentPass" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDStudent" Type="Int32" />
+          <Property Name="IDTeacher" Type="Int32" />
+          <Property Name="IDLab" Type="Int32" />
+          <Property Name="PassedQuantity" Type="Int32" />
+          <NavigationProperty Name="ListLab" Relationship="LabTracker.StudentPass_ListLab_FK" FromRole="StudentPass" ToRole="ListLab" />
+          <NavigationProperty Name="ListStudent" Relationship="LabTracker.StudentPass_StudentList_FK" FromRole="StudentPass" ToRole="ListStudent" />
+          <NavigationProperty Name="ListTeacher" Relationship="LabTracker.StudentPass_ListTeachers_FK" FromRole="StudentPass" ToRole="ListTeacher" />
+        </EntityType>
+        <Association Name="StudentPass_ListLab_FK">
+          <End Type="LabTracker.ListLab" Role="ListLab" Multiplicity="0..1" />
+          <End Type="LabTracker.StudentPass" Role="StudentPass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListLab">
+              <PropertyRef Name="IDLab" />
+            </Principal>
+            <Dependent Role="StudentPass">
+              <PropertyRef Name="IDLab" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StudentPass_StudentList_FK">
+          <End Type="LabTracker.ListStudent" Role="ListStudent" Multiplicity="0..1" />
+          <End Type="LabTracker.StudentPass" Role="StudentPass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListStudent">
+              <PropertyRef Name="IDStudent" />
+            </Principal>
+            <Dependent Role="StudentPass">
+              <PropertyRef Name="IDStudent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StudentPass_ListTeachers_FK">
+          <End Type="LabTracker.ListTeacher" Role="ListTeacher" Multiplicity="0..1" />
+          <End Type="LabTracker.StudentPass" Role="StudentPass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListTeacher">
+              <PropertyRef Name="IDTeacher" />
+            </Principal>
+            <Dependent Role="StudentPass">
+              <PropertyRef Name="IDTeacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище LabTrackerContainer" CdmEntityContainer="LabTrackerDB">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="LabTracker.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cources">
+            <EntityTypeMapping TypeName="LabTracker.Cource">
+              <MappingFragment StoreEntitySet="Cource">
+                <ScalarProperty Name="IDCource" ColumnName="IDCource" />
+                <ScalarProperty Name="NumberCource" ColumnName="NumberCource" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="LabTracker.Group">
+              <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="IDGroup" ColumnName="IDGroup" />
+                <ScalarProperty Name="NumberGroup" ColumnName="NumberGroup" />
+                <ScalarProperty Name="IDSpeciality" ColumnName="IDSpeciality" />
+                <ScalarProperty Name="IDSubGroup" ColumnName="IDSubGroup" />
+                <ScalarProperty Name="IDCource" ColumnName="IDCource" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ListLabs">
+            <EntityTypeMapping TypeName="LabTracker.ListLab">
+              <MappingFragment StoreEntitySet="ListLab">
+                <ScalarProperty Name="IDLab" ColumnName="IDLab" />
+                <ScalarProperty Name="NameLab" ColumnName="NameLab" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="IDCource" ColumnName="IDCource" />
+                <ScalarProperty Name="IDSpeciality" ColumnName="IDSpeciality" />
+                <ScalarProperty Name="IDSem" ColumnName="IDSem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ListLabTeachers">
+            <EntityTypeMapping TypeName="LabTracker.ListLabTeacher">
+              <MappingFragment StoreEntitySet="ListLabTeacher">
+                <ScalarProperty Name="IDListLabTeacher" ColumnName="IDListLabTeacher" />
+                <ScalarProperty Name="IDTeacher" ColumnName="IDTeacher" />
+                <ScalarProperty Name="IDGroup" ColumnName="IDGroup" />
+                <ScalarProperty Name="IDLab" ColumnName="IDLab" />
+                <ScalarProperty Name="WeekName" ColumnName="WeekName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ListStudents">
+            <EntityTypeMapping TypeName="LabTracker.ListStudent">
+              <MappingFragment StoreEntitySet="ListStudents">
+                <ScalarProperty Name="IDStudent" ColumnName="IDStudent" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="IDGroup" ColumnName="IDGroup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ListTeachers">
+            <EntityTypeMapping TypeName="LabTracker.ListTeacher">
+              <MappingFragment StoreEntitySet="ListTeachers">
+                <ScalarProperty Name="IDTeacher" ColumnName="IDTeacher" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Semestrs">
+            <EntityTypeMapping TypeName="LabTracker.Semestr">
+              <MappingFragment StoreEntitySet="Semestr">
+                <ScalarProperty Name="IDSem" ColumnName="IDSem" />
+                <ScalarProperty Name="MonthDayStart" ColumnName="MonthDayStart" />
+                <ScalarProperty Name="MonthDayEnd" ColumnName="MonthDayEnd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Specialities">
+            <EntityTypeMapping TypeName="LabTracker.Speciality">
+              <MappingFragment StoreEntitySet="Speciality">
+                <ScalarProperty Name="NameSpeciality" ColumnName="NameSpeciality" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="LabTracker.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IDStudent" ColumnName="IDStudent" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="AboutMe" ColumnName="AboutMe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubGroups">
+            <EntityTypeMapping TypeName="LabTracker.SubGroup">
+              <MappingFragment StoreEntitySet="SubGroup">
+                <ScalarProperty Name="IDSubGroup" ColumnName="IDSubGroup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="LabTracker.Teacher">
+              <MappingFragment StoreEntitySet="Teacher">
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IDTeacher" ColumnName="IDTeacher" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="AboutMe" ColumnName="AboutMe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeekDays">
+            <EntityTypeMapping TypeName="LabTracker.WeekDay">
+              <MappingFragment StoreEntitySet="WeekDay">
+                <ScalarProperty Name="IDWeek" ColumnName="IDWeek" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlansPasses">
+            <EntityTypeMapping TypeName="LabTracker.PlansPass">
+              <MappingFragment StoreEntitySet="PlansPass">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IDLab" ColumnName="IDLab" />
+                <ScalarProperty Name="IDGroup" ColumnName="IDGroup" />
+                <ScalarProperty Name="IDPlan" ColumnName="IDPlan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentPasses">
+            <EntityTypeMapping TypeName="LabTracker.StudentPass">
+              <MappingFragment StoreEntitySet="StudentPass">
+                <ScalarProperty Name="PassedQuantity" ColumnName="PassedQuantity" />
+                <ScalarProperty Name="IDLab" ColumnName="IDLab" />
+                <ScalarProperty Name="IDTeacher" ColumnName="IDTeacher" />
+                <ScalarProperty Name="IDStudent" ColumnName="IDStudent" />
+                <ScalarProperty Name="IDStudentPass" ColumnName="IDStudentPass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

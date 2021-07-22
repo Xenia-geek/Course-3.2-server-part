@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "";
+}
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title> BSTU.Authorization </title>
+    <style>
+        body {
+            text-align: center;
+            font-family: MV Boli;
+            background-image:url('@Url.Content("~/Image/Authorization1.jpg")');
+        }
+    </style>
+</head>
+<body>
+    <h3 style="font-size: 45px;
+        margin-top: 10px;
+        margin-bottom: -15px;
+        color: white;">
+        Lab Tracker
+    </h3>
+    <h3 style="font-size: 35px;
+        margin-top: 0px;
+        margin-bottom: 60px;
+        color: white;">
+        FIT
+    </h3>
+    <h2 style="font-size: 35px;margin-top: 0px">Authorization</h2>
+    <form method="post" action="~/Home/AuthorizationNext">
+        <div>
+            <h3 style="font-size: 25px">Enter login</h3>
+            <input type="text" id="login" name="login" style="font-size: 25px" />
+            <h3 style="font-size: 25px">Enter password</h3>
+            <input type="text" id="password" name="password" style="font-size: 25px" value="1" />
+        </div>
+        <input style="font-size: 25px; margin-top: 20px" type="submit" value="Next" />
+    </form>
+   
+</body>

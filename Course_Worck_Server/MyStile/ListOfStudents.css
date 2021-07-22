@@ -1,0 +1,95 @@
+﻿.buttonsStudent {
+    font-family: MV Boli;
+}
+
+.addpage {
+    font-family: MV Boli;
+}
+
+.studentslist {
+    font-family: MV Boli;
+    font-size: 18px;
+    border-radius: 10px;
+    border-spacing: 0;
+    text-align: center;
+}
+
+.titels {
+    font-family: MV Boli;
+    background-color: #696969;
+    color: white;
+    text-align: center;
+}
+
+
+.valuelist {
+    font-family: MV Boli;
+    background-color: #F5F5F5;
+    text-align: center;
+}
+
+th {
+    color: white;
+    text-shadow: 0 1px 1px #2D2020;
+    padding: 10px 20px;
+}
+
+th, td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: white;
+}
+
+    th:first-child, td:first-child {
+        text-align: left;
+    }
+
+    th:first-child {
+        border-top-left-radius: 10px;
+    }
+
+    th:last-child {
+        border-top-right-radius: 10px;
+        border-right: none;
+    }
+
+td {
+    padding: 10px 20px;
+}
+
+tr:last-child td:first-child {
+    border-radius: 0 0 0 10px;
+}
+
+tr:last-child td:last-child {
+    border-radius: 0 0 10px 0;
+}
+
+tr td:last-child {
+    border-right: none;
+}
+
+.idstudlist {
+    width: 120px;
+    text-align: center;
+}
+.namestudlist{
+    width:250px;
+    text-align:center;
+}
+.surnamestudlist{
+    width:300px;
+    text-align:center;
+}
+.groupstudlist{
+    width:100px;
+    text-align:center;
+}
+.coursestudlist{
+    width:100px;
+    text-align:center;
+}
+.specialitystudlist{
+    width:120px;
+    text-align:center;
+}
